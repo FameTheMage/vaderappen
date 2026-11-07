@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solglimt – Väderappen ☀️</title>
+    <meta name="description" content="Sök en ort och se vädret just nu och de kommande fem dagarna." />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme') || 'happy';
+          var r = t === 'system'
+            ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+            : t;
+          document.documentElement.dataset.theme = r;
+          var l = localStorage.getItem('lang');
+          if (l === 'en' || l === 'sv') document.documentElement.lang = l;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
