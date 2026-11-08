@@ -80,14 +80,14 @@ git branch -d min-funktion
 - Testa din nya funktion på den publicerade sidan, gärna även på mobilen.
 - Om körningen är röd: klicka på den, öppna det röda steget och läs felet. Rätta, committa och pusha igen, eller kör **Re-run all jobs**.
 
----
+
 
 ## Snabbversion
 
 ```powershell
 git switch main; git pull
 git switch -c min-funktion
-# ändra och testa med npm run dev
+# ändra och testa med 'npm run dev'
 git add .
 git commit -m "Beskrivning"
 git push -u origin min-funktion
@@ -95,3 +95,47 @@ git push -u origin min-funktion
 git switch main; git pull
 git branch -d min-funktion
 ```
+### Rensa bort branchen efter publicering
+git switch main
+git pull
+git branch -d min-funktion
+git push origin --delete min-funktion
+git fetch --prune
+```
+
+På GitHub: om du inte redan klickade på **Delete branch** efter merge, gör det på den mergade pull requesten. Då behövs inte `git push origin --delete`.
+
+
+----------- 
+Lägga till och skicka till GITHUB
+
+Du behöver inte göra något på GitHub för det här. Du committar direkt på main och pushar, vilket är enklast för en ren dokumentationsfil.
+
+PowerShell:
+
+cd E:\AIKurs\vaderappen
+git switch main
+git status
+
+git status ska visa NYFUNKTION.md under “Untracked files”. Om det även står andra filer du inte vill ha med, säg till.
+
+git add NYFUNKTION.md
+git commit -m "Lägg till guide för nya funktioner och branches"
+git push
+
+Kontrollera:
+
+git status ska säga nothing to commit, working tree clean.
+Ladda om repot på GitHub. NYFUNKTION.md ska finnas i fillistan.
+Fliken Actions startar en ny publicering, eftersom main ändrades. Den blir grön efter cirka en minut. Sidan ser likadan ut, eftersom bara en md-fil lades till.
+
+Vill du öva på branch-flödet i stället? Då skapar du en branch först med git switch -c nyfunktion-guide och följer sedan NYFUNKTION.md från steg 1. För en liten dokumentationsfil är det inte nödvändigt.
+
+
+
+Lägg till och få upp ändringarna på GitHub:
+git status
+git add .
+git commit -m "kommentar"
+git push
+------------------
