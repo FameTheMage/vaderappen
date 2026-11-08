@@ -4,12 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <title>Solglimt – Väderappen ☀️</title>
     <meta name="description" content="Sök en ort och se vädret just nu och de kommande fem dagarna." />
     <script>
       (function () {
         try {
-          var t = localStorage.getItem('theme') || 'happy';
+          var t = localStorage.getItem('theme') || 'dark';
           var r = t === 'system'
             ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
             : t;

@@ -25,7 +25,17 @@ function FlagGB() {
   );
 }
 
-const THEMES = ['happy', 'light', 'dark', 'system'];
+const STAR_PATH = 'M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z';
+
+function Icon({ d }) {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d={d} />
+    </svg>
+  );
+}
+
+const THEMES =['happy', 'light', 'dark', 'system'];
 
 function applyTheme(theme) {
   const resolved =
@@ -39,7 +49,7 @@ function applyTheme(theme) {
 
 export default function App() {
   const [lang, setLang] = usePersistentState('lang', 'sv');
-  const [theme, setTheme] = usePersistentState('theme', 'happy');
+  const [theme, setTheme] = usePersistentState('theme', 'dark');
   const [units, setUnits] = usePersistentState('units', 'metric');
   const [favorites, setFavorites] = usePersistentState('favorites', []);
   const [selected, setSelected] = usePersistentState('selected', null);
@@ -199,7 +209,8 @@ export default function App() {
             {results.map((p) => (
               <li key={placeId(p)}>
                 <button type="button" onClick={() => choose(p)}>
-                  📍 {label(p)}
+                  <Icon d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                  {label(p)}
                 </button>
               </li>
             ))}
@@ -207,7 +218,10 @@ export default function App() {
         )}
 
         <section className="favorites" aria-label={t.favorites}>
-          <h2>⭐ {t.favorites}</h2>
+          <h2>
+            <Icon d={STAR_PATH} />
+            {t.favorites}
+          </h2>
           {favorites.length === 0 ? (
             <p className="muted">{t.noFavorites}</p>
           ) : (
@@ -248,9 +262,7 @@ export default function App() {
 
         {!selected && !error && (
           <div className="welcome">
-            <div className="big-emoji" aria-hidden="true">
-              🌤️
-            </div>
+            <div className="welcome-orb" aria-hidden="true" />
             <h2>{t.welcomeTitle}</h2>
             <p>{t.welcomeText}</p>
           </div>
@@ -273,7 +285,7 @@ export default function App() {
                 aria-label={isFav ? t.removeFavorite : t.addFavorite}
                 title={isFav ? t.removeFavorite : t.addFavorite}
               >
-                {isFav ? '★' : '☆'}
+                <Icon d={STAR_PATH} />
               </button>
             </div>
             {loading && !weather && <p className="muted">{t.loading}</p>}
