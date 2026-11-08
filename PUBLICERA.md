@@ -8,6 +8,17 @@ Ersätt `DITT-ANVÄNDARNAMN` med ditt GitHub-användarnamn och `DIN-E-POST` med 
 > **Viktigt om API-nyckeln:** `.env.local` ligger i `.gitignore` och laddas därför aldrig upp. Det är meningen. Eftersom Vite bygger in nyckeln i sidan måste GitHub få nyckeln på ett säkert sätt när sidan byggs. Det gör du med en *Secret* (steg 5). Skriv aldrig in nyckeln i en fil som committas.
 
 ---
+Varje steg har tre delar: vad och varför, exakta kommandon och klickvägar, och hur du kontrollerar resultatet. Stegen i guiden:
+
+1. Kontrollera Git och ställ in namn och e-post.
+2. Skapa ett tomt, publikt repo som heter vaderappen på GitHub.
+3. Kör git init, git add . och git status, och kontrollera att .env.local inte följer med. Gör sedan din första commit.
+4. Koppla repot till GitHub och kör git push.
+5. Lägg in nyckeln som en Secret med namnet VITE_OPENWEATHER_API_KEY.
+6. Ställ in Pages-källan till GitHub Actions.
+7. Skapa .github/workflows/deploy.yml. Den bygger appen med din Secret och publicerar den.
+8. Öppna https://DITT-ANVÄNDARNAMN.github.io/vaderappen/ och kontrollera att sidan fungerar.
+---
 
 ## Steg 1. Kontrollera att Git finns och ställ in vem du är
 
